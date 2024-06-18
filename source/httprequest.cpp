@@ -1,4 +1,4 @@
-#include "HttpRequest.h"
+#include "headers/httprequest.h"
 
 HTTPRequest::HTTPRequest(Method method, const std::string& path, const std::string& host)
     : method_(method), path_(path), host_(host) {

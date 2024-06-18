@@ -2,9 +2,9 @@
 #include <thread>
 #include <iostream>
 #include <stop_token>
-#include "headers/urlresolver.h"
-#include "headers/tcpclient.h"
-#include "headers/httprequest.h"
+#include "urlresolver.h"
+#include "tcpclient.h"
+#include "httprequest.h"
 
 // Example usage function
 void sendDataToServer(const std::string &url, HTTPRequest::Method method, const std::string &body, int delay_ms, std::stop_token st)

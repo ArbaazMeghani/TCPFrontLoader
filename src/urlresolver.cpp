@@ -1,4 +1,4 @@
-#include "headers/urlresolver.h"
+#include "urlresolver.h"
 
 bool URLResolver::parseURL(const std::string &url, std::string &hostname, int &port, std::string &path)
 {

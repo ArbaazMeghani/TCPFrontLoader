@@ -17,11 +17,13 @@ public:
 
     bool connectToServer();
     bool sendDataWithDelay(const std::string &data, int delay_ms);
+    std::string receiveData();
 
 private:
     bool sendData(std::span<const char> data);
     bool sendLastByte(char last_byte);
     void delay(int milliseconds);
+    void setReceiveTimeout(int seconds);
 
     std::string server_ip_;
     int server_port_;

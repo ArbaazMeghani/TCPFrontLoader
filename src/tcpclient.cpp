@@ -33,6 +33,8 @@ bool TCPClient::connectToServer()
         return false;
     }
 
+    setReceiveTimeout(5);
+
     return true;
 }
 
@@ -99,4 +101,34 @@ bool TCPClient::sendDataWithDelay(const std::string &data, int delay_ms)
     }
 
     return true;
+}
+
+void TCPClient::setReceiveTimeout(int seconds)
+{
+    struct timeval timeout;
+    timeout.tv_sec = seconds;
+    timeout.tv_usec = 0;
+    if (setsockopt(sockfd_, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout)) < 0)
+    {
+        std::cerr << "Error setting socket receive timeout\n";
+    }
+}
+
+std::string TCPClient::receiveData()
+{
+    std::vector<char> buffer(4096);
+    std::string response;
+    ssize_t bytes_received;
+
+    while ((bytes_received = recv(sockfd_, buffer.data(), buffer.size(), 0)) > 0)
+    {
+        response.append(buffer.data(), bytes_received);
+    }
+
+    if (bytes_received < 0)
+    {
+        std::cerr << "Error receiving data\n";
+    }
+
+    return response;
 }

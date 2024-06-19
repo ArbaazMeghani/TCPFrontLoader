@@ -46,6 +46,9 @@ void sendDataToServer(const std::string &url, HTTPRequest::Method method, const 
     {
         std::cout << "Data sent successfully to server: " << server_ip << ":" << port << "\n";
     }
+
+    std::string response = client.receiveData();
+    std::cout << "Received response: " << response << "\n";
 }
 
 // Usage example
@@ -53,12 +56,10 @@ int main()
 {
     // List of server URLs
     std::vector<std::string> urls = {
-        "http://127.0.0.1:8080/api/v1/test",
-        "http://192.168.0.1:8081/api/v1/test"};
+        "tcpbin.com:4242"};
 
     std::vector<std::string> data = {
-        "Hello, World! This is a test message for server 1.",
-        "Hello, World! This is a test message for server 2."};
+        "Hello, World! This is a test message for server 1.\n"};
 
     int delay_ms = 5000; // Delay of 5 seconds
 
